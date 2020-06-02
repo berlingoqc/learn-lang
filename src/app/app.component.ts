@@ -1,5 +1,5 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { TrackRecorder, AudioService } from './lib/audio.service';
+import { AudioService } from './lib/service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,6 @@ export class AppComponent implements AfterViewInit {
   title = 'learn-lang';
 
   download: any;
-  recorder: TrackRecorder;
 
   constructor(public audioService: AudioService) {
     audioService.validPermissions().then(() => {
