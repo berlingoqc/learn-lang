@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AudioInputComponent } from './audio-input.component';
+import { MicroSelectComponent } from './micro-select.component';
 
-describe('AudioInputComponent', () => {
-  let component: AudioInputComponent;
-  let fixture: ComponentFixture<AudioInputComponent>;
+describe('MicroSelectComponent', () => {
+  let component: MicroSelectComponent;
+  let fixture: ComponentFixture<MicroSelectComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AudioInputComponent ]
+      declarations: [ MicroSelectComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AudioInputComponent);
+    fixture = TestBed.createComponent(MicroSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
