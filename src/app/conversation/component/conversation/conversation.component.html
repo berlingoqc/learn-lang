@@ -1,0 +1,30 @@
+<mat-card>
+  <div class="flex-row">
+    <h1 mat-card-title>{{ conversation.name }}</h1>
+    <div class="space"></div>
+    <mat-form-field>
+      <mat-select>
+        <mat-option [value]="'fr'">FR</mat-option>
+        <mat-option [value]="'br'">BR</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-card-content>
+    <app-audio-input-group>
+      <div *ngFor="let exchange of conversation.exchanges" class="flex-row">
+        <app-character-icon
+          class="flex-row center"
+          style="width: 100px;"
+          [name]="exchange.characterId"
+        ></app-character-icon>
+        <div class="flex-row full">
+          <span
+            class="flex-row center half"
+            [innerHTML]="exchange.text[displayLang]"
+          ></span>
+          <lib-audio-input class="flex-row center half"></lib-audio-input>
+        </div>
+      </div>
+    </app-audio-input-group>
+  </mat-card-content>
+</mat-card>

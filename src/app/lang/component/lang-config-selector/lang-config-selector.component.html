@@ -1,0 +1,27 @@
+<div>
+  <div>
+    <h5>Learn a new lang is fun when you can pratice with help.</h5>
+  </div>
+
+  <div>
+    <h4>Quelle est votre langue d'origine ?</h4>
+
+    <ng-container *ngTemplateOutlet="langlist"></ng-container>
+  </div>
+
+  <div>
+    <h4>Que voulez-vous apprendre ?</h4>
+
+    <ng-container [ngTemplateOutlet]="langlist" [ngTemplateOutletContext]="{indexName: 'selectedLearningIndex'}"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #langlist let-indexName="indexName">
+  <div class="flex-row full even wrap">
+    <div *ngFor="let lang of langs; index as i" class="flex-col center" (click)="click(indexName, i)" [ngClass]="getClass(indexName,i)">
+      <img src="{{ lang.flag }}" width="75" />
+      <span [innerHTML]="lang.name['fr']"></span>
+    </div>
+  </div>
+</ng-template>

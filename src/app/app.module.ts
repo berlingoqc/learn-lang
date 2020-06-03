@@ -1,29 +1,34 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { AngularFireModule,  } from '@angular/fire';
-
-import { AudioInputModule } from './lib/audio-input.module';
-import { AngularFireAuthModule } from '@angular/fire/auth';
-import { environment } from 'src/environments/environment';
 import { AuthService } from './auth.service';
+import { ConversationModule } from './conversation/conversation.module';
+import { AudioInputModule } from './lib/audio-input.module';
+import { LangConfigSelectorComponent } from './lang/component/lang-config-selector/lang-config-selector.component';
+import { CommonModule } from '@angular/common';
 
 
-import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LangConfigSelectorComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
 
     AudioInputModule,
+    ConversationModule,
 
 
     AngularFireModule.initializeApp(environment.firebase),
