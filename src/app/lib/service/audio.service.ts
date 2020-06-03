@@ -1,5 +1,6 @@
 import { Injectable, ElementRef } from '@angular/core';
 import { AudioPlayer, TrackRecorder } from '../audio';
+import { Subject } from 'rxjs';
 
 
 declare var MediaRecorder: any;

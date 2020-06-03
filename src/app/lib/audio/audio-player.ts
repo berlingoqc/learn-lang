@@ -1,5 +1,6 @@
 import { ElementRef } from '@angular/core';
 import { AudioAnalyserDisplayer } from './analyser-displayer';
+import { Subject } from 'rxjs';
 
 
 export type AudioRessource = string | Blob;
@@ -19,6 +20,7 @@ export class AudioPlayer {
 
   currentAnalyser: AudioAnalyserDisplayer;
 
+  event: Subject<{name: string, data: any}> = new Subject();
 
   get playing(): boolean {
       return !this.audioElementRef.paused;
@@ -56,19 +58,24 @@ export class AudioPlayer {
 
   private onStop() {
     this.playing = false;
-    //this.resetAudioElement();
+    this.resetAudioElement();
     if (this.filesList.length > 0) {
       this.audioLoop();
     } else {
-        this.current = null;
         this.currentAnalyser.stop();
         this.currentAnalyser.disconnect();
+        this.event.next({name: 'ended', data: this.current.data})
+        this.current = null;
     }
   }
 
   private audioLoop() {
-    console.log(this.filesList);
+    if(this.playing) {
+      console.log('ALREADY PLAYING WAINTING');
+      return;
+    }
     const file = this.filesList.splice(0, 1)[0];
+    console.log('PLATING', file.data);
     this.current = file;
     this.playing = true;
     if (typeof file.data === 'string') {
