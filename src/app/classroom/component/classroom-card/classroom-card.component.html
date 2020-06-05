@@ -1,5 +1,17 @@
+<div class="flex-row center full">
 
-<div>
-  <app-lang-avatar [langId]="classroom.originLang"></app-lang-avatar>
-  <app-lang-avatar [langId]="classroom.learningLang"></app-lang-avatar>
+  <h3>Salle de classe {{classroom.originLang}} vers {{classroom.learningLang}} </h3>
+  <div class="flex-row center">
+    <app-lang-avatar [langId]="classroom.originLang"></app-lang-avatar>
+    <div>
+      <mat-icon>
+        arrow_right_alt
+      </mat-icon>
+    </div>
+    <app-lang-avatar [langId]="classroom.learningLang"></app-lang-avatar>
+  </div>
+
+  <div>
+
+  </div>
 </div>

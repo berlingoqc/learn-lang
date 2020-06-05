@@ -13,7 +13,6 @@ export class ClassroomCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.classroom);
   }
 
 }

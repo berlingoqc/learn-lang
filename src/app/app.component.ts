@@ -2,6 +2,8 @@ import { Component, AfterViewInit } from '@angular/core';
 import { AudioService } from './lib/service';
 import { Router } from '@angular/router';
 import { UserService } from './user/user.service';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -26,13 +28,15 @@ export class AppComponent implements AfterViewInit {
 
 
 @Component({
-  template: `<ngx-auth-firebaseui-login (onCreateAccountRequested)="onCreateAccount()" (onSuccess)="onSuccess($event)"></ngx-auth-firebaseui-login>`,
+  template: ''
 })
 export class LoginPage {
 
 
-  constructor(private router: Router, private userService: UserService) {
-
+  constructor(private router: Router, private auth: AngularFireAuth,private firestore: AngularFirestore, private userService: UserService) {
+    (this.auth as any).signInWithEmailAndPassword('william95quintalwilliam@outlook.com', 'Office2999pro').then((d) => {
+      this.onSuccess(d.user);
+    });
   }
 
   async onSuccess(event: any) {
@@ -51,7 +55,7 @@ export class LoginPage {
 
 
 @Component({
-  template: `<ngx-auth-firebaseui-register (onSuccess)="onLogin()" (onLoginRequested)="onLogin()"><ngx-auth-firebaseui-register>`
+  template: ''
 })
 export class RegisterPage {
   constructor(private router: Router) {}

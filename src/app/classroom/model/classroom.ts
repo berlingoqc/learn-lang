@@ -8,5 +8,7 @@ export class Classroom {
 
   owner: User;
 
+  name: string;
+
 }
 

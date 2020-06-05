@@ -16,9 +16,7 @@ export class LangAvatarComponent {
 
   @Input()
   set langId(id: string) {
-    console.log(id);
     this.lang = Langs.find(x => x.accronyme === id);
-    console.log(this.lang);
   }
   @Input() lang: LangItem;
 

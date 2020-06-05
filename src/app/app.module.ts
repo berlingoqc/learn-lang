@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, LoginPage, RegisterPage } from './app.component';
 import { ConversationModule } from './conversation/conversation.module';
 import { AudioInputModule } from './lib/audio-input.module';
-import { LangConfigSelectorComponent } from './lang/component/lang-config-selector/lang-config-selector.component';
 import { CommonModule } from '@angular/common';
 
 import { NgxAuthFirebaseUIModule } from 'ngx-auth-firebaseui';
@@ -57,5 +56,7 @@ import { ClassroomModule } from './classroom/classroom.module';
 export class AppModule {
 
   constructor(fi: AngularFirestore) {
+    fi.firestore.enablePersistence();
+    //fi.firestore.settings({ experimentalForceLongPolling: true });
   }
 }
