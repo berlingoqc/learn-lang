@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LangItem } from '../../model';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from 'src/app/user/user.service';
 
-@Component({
-  selector: 'app-lang-config-selector',
-  templateUrl: './lang-config-selector.component.html',
-  styleUrls: ['./lang-config-selector.component.scss']
-})
-export class LangConfigSelectorComponent implements OnInit {
 
-  langs: LangItem[] = [
+export const Langs: LangItem[] = [
     {
       accronyme: 'en',
       flag: '/assets/flags/en.svg',
@@ -39,12 +35,26 @@ export class LangConfigSelectorComponent implements OnInit {
     }
   ];
 
+@Component({
+  selector: 'app-lang-config-selector',
+  templateUrl: './lang-config-selector.component.html',
+  styleUrls: ['./lang-config-selector.component.scss']
+})
+export class LangConfigSelectorComponent implements OnInit {
+
+  langs = Langs;
+
   selectedOriginIndex: number;
   selectedLearningIndex: number;
 
 
+  get isValid(): boolean {
+    return (this.selectedLearningIndex !== undefined && this.selectedOriginIndex !== undefined);
+  }
 
-  constructor() { }
+
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private userService: UserService) {
+  }
 
   ngOnInit(): void {
   }
@@ -56,6 +66,19 @@ export class LangConfigSelectorComponent implements OnInit {
 
   click(item: string, index: number) {
     this[item] = index;
+  }
+
+
+  confirm() {
+    if(this.isValid) {
+      this.userService.updateUserConfig(this.activatedRoute.snapshot.queryParams.uid, {
+        learningLang: this.langs[this.selectedLearningIndex].accronyme,
+        originLang: this.langs[this.selectedOriginIndex].accronyme
+      }).then(() => {
+        this.router.navigate(['/home']);
+
+      });
+    }
   }
 
 }

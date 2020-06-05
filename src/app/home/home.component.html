@@ -1,0 +1,8 @@
+
+
+
+<div class="flex-row full event wrap" *ngIf="classrooms">
+  <div *ngFor="let e of classrooms.docs">
+    <app-classroom-card [classroom]="e.data()"></app-classroom-card>
+  </div>
+</div>
